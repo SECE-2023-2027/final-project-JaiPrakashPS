@@ -2,13 +2,14 @@
 import { useState } from 'react';
 import { signIn } from 'next-auth/react';
 import styles from './page.module.css';
-
+import { useRouter } from 'next/navigation';
 export default function LoginPage() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-
+  const router = useRouter();
+  
   async function handleAdminLogin(e) {
     e.preventDefault();
     setError('');
@@ -23,7 +24,7 @@ export default function LoginPage() {
     if (result.error) {
       setError('Invalid admin credentials');
     } else {
-      window.location.href = '/dashboard';
+      router.push('/dashboard');
     }
     setIsLoading(false);
   }
