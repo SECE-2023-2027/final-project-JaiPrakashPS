@@ -2,7 +2,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/authOptions";
 import Link from "next/link";
 import styles from "./page.module.css";
-import SubjectsPageClient from "./SubjectsPageClient"; // ✅ Import client component
+import SubjectsPageClient from "./SubjectsPageClient"; 
 
 async function getSubjects() {
   const res = await fetch(
@@ -48,8 +48,6 @@ export default async function SubjectsPage() {
           </Link>
         </div>
       )}
-
-      {/* ✅ Render Client Component */}
       <SubjectsPageClient subjects={subjects} isAdmin={isAdmin} />
     </div>
   );

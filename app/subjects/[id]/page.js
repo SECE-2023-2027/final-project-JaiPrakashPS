@@ -6,7 +6,6 @@ import { useRouter } from "next/navigation";
 import styles from "./page.module.css";
 
 export default function SubjectDetail({ params }) {
-  // ✅ Ignore warning: Directly using params.id (safe for now)
   const subjectId = params.id;
 
   const { data: session } = useSession();

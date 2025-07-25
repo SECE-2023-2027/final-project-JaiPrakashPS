@@ -1,6 +1,5 @@
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/authOptions";
-import Navbar from "@/components/Navbar";
 import Link from "next/link";
 import styles from "./page.module.css";
 
