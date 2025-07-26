@@ -5,19 +5,25 @@ import styles from "./page.module.css";
 import SubjectsPageClient from "./SubjectsPageClient"; 
 
 async function getSubjects() {
-  const baseUrl =
-    process.env.NEXT_PUBLIC_SITE_URL ||
-    process.env.VERCEL_URL
-      ? `https://${process.env.VERCEL_URL}`
-      : "http://localhost:3000";
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 
-  const res = await fetch(`${baseUrl}/api/subjects`, {
-    cache: "no-store",
-  });
+  try {
+    const res = await fetch(`${baseUrl}/api/subjects`, {
+      cache: "no-store",
+    });
 
-  if (!res.ok) throw new Error("Failed to fetch subjects");
-  return res.json();
+    if (!res.ok) {
+      console.error("Fetch failed:", res.status, res.statusText);
+      throw new Error("Failed to fetch subjects");
+    }
+
+    return res.json();
+  } catch (error) {
+    console.error("Error fetching subjects:", error);
+    throw error;
+  }
 }
+
 
 
 
