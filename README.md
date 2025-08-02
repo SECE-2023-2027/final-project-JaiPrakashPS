@@ -1,134 +1,84 @@
-# 📊 Semester Attendance Calculator
+# 🎓 Semester Attendance Calculator
 
-A modern web application that helps students track and plan their attendance across subjects. Built using [Next.js](https://nextjs.org) and deployed on [Vercel](https://vercel.com/).
+A smart web app built with **Next.js 13+ (App Router)** to help students plan and track their attendance by calculating how many classes they can miss while still staying above a specified attendance threshold. 
 
-🔗 **Live App**: [https://attendance-pro-kappa.vercel.app](https://attendance-pro-kappa.vercel.app)
+🌐 **Live Deployment**: [https://attendance-pro-kappa.vercel.app](https://attendance-pro-kappa.vercel.app)
 
 ---
 
 ## ✨ Features
 
-- 🔐 **GitHub Authentication** with [NextAuth.js](https://next-auth.js.org/)
-- 🧮 **Live Attendance Calculation** — track present, absent, and remaining classes
-- 📈 **Safe Bunk Prediction** — know how many classes you can safely skip
-- ☁️ **Deployed on Vercel** — instant deployment and CI/CD
-- 💨 Lightning-fast frontend with [App Router](https://nextjs.org/docs/app)
+- ✅ Calculate how many classes you can skip based on current attendance.
+- 🔐 GitHub authentication using **NextAuth.js**.
+- 📊 View detailed subject-wise attendance stats.
+- 🗃️ Data persistence using **MongoDB**.
+- 💻 Fully responsive and mobile-friendly UI.
+- ☁️ Hosted on **Vercel** for fast performance and zero config deployment.
 
 ---
 
-## 🖥️ Tech Stack
+## 🚀 Technologies Used
 
-| Frontend | Backend | Auth     | Deployment |
-|----------|---------|----------|------------|
-| Next.js  | Node.js | GitHub via NextAuth.js | Vercel     |
+- **Next.js 13+** (with App Router)
+- **React**
+- **Tailwind CSS**
+- **NextAuth.js** for authentication
+- **MongoDB** with Mongoose
+- **Vercel** for deployment
 
 ---
 
-## 🚀 Getting Started Locally
+## 🔐 Authentication (GitHub Login)
 
-To run this project locally:
+This project uses `NextAuth.js` for authentication with GitHub as a provider.
 
-1. **Clone the repository:**
+### GitHub OAuth Setup:
+1. Go to [GitHub Developer Settings → OAuth Apps](https://github.com/settings/developers)
+2. Click “New OAuth App”
+3. Use the following settings:
+   - **Homepage URL**: `https://attendance-pro-kappa.vercel.app`
+   - **Authorization callback URL**: `https://attendance-pro-kappa.vercel.app/api/auth/callback/github`
 
-   ```bash
-   git clone https://github.com/your-username/semester-attendance-calculator.git
-   cd semester-attendance-calculator
-Install dependencies:
+4. Set the `GITHUB_ID` and `GITHUB_SECRET` in `.env.local`:
 
-bash
-Copy
-Edit
+```env
+GITHUB_ID=your_github_client_id
+GITHUB_SECRET=your_github_client_secret
+NEXTAUTH_SECRET=your_random_secret
+NEXTAUTH_URL=http://localhost:3000
+
+📂 Folder Structure (Key Files)
+
+/app
+  └── page.js                # Landing page
+  └── dashboard              # Authenticated user dashboard
+  └── api/auth/[...nextauth]/route.js  # NextAuth API Route
+/lib
+  └── authOptions.js         # NextAuth provider and callbacks setup
+/models
+  └── User.js                # Mongoose model
+/utils
+  └── attendance.js          # Core attendance logic
+
+⚙️ Local Development Setup
+1. Clone the Repository
+git clone https://github.com/your-username/attendance-calculator.git
+cd attendance-calculator
+
+2. Install Dependencies
 npm install
 # or
 yarn install
-Set environment variables:
 
-Create a .env.local file in the root directory with:
-
-env
-Copy
-Edit
+3. Create .env.local file
+MONGODB_URI=your_mongodb_connection_string
 GITHUB_ID=your_github_client_id
 GITHUB_SECRET=your_github_client_secret
-NEXTAUTH_SECRET=some-random-secret
-Run the development server:
+NEXTAUTH_SECRET=your_nextauth_secret
+NEXTAUTH_URL=http://localhost:3000
 
-bash
-Copy
-Edit
+4. Run the Development Server
 npm run dev
-# or
-yarn dev
-Open http://localhost:3000 to see the app.
 
-🔑 Authentication
-This project uses GitHub OAuth with NextAuth.js for user authentication.
+Open http://localhost:3000 in your browser.
 
-The login is handled at:
-
-ts
-Copy
-Edit
-/app/api/auth/[...nextauth]/route.js
-Configuration is done in:
-
-ts
-Copy
-Edit
-/lib/authOptions.js
-Make sure to create a GitHub OAuth app in GitHub Developer Settings and use the generated credentials.
-
-📄 Project Structure
-bash
-Copy
-Edit
-📦 semester-attendance-calculator
-├── app/
-│   ├── page.js                # Main homepage
-│   └── api/auth/              # NextAuth route handler
-├── components/                # UI components
-├── lib/authOptions.js         # Auth config
-├── public/                    # Static assets
-├── styles/                    # Tailwind CSS / global styles
-├── .env.local                 # Environment variables
-└── package.json               # Project metadata & scripts
-📷 Screenshots
-(Add screenshots of login, dashboard, and attendance calculator views here)
-
-🛠️ Available Scripts
-bash
-Copy
-Edit
-npm run dev      # Starts the dev server
-npm run build    # Builds the production version
-npm start        # Starts the production server
-🧪 To-Do / Future Features
-Add dark mode toggle
-
-Export attendance report as PDF
-
-Add multi-user dashboard for tracking multiple students
-
-Push notifications for low attendance
-
-📤 Deploying
-This app is deployed on Vercel. To deploy your own copy:
-
-Push to GitHub
-
-Visit https://vercel.com/new
-
-Import your GitHub repo
-
-Set environment variables
-
-Deploy!
-
-📚 Resources
-Next.js Docs
-
-NextAuth Docs
-
-Tailwind CSS
-
-Vercel Platform
