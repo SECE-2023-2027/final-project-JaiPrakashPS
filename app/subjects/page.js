@@ -25,8 +25,6 @@ async function getSubjects() {
 }
 
 
-
-
 export default async function SubjectsPage() {
   const session = await getServerSession(authOptions);
   if (!session) {
